@@ -1,0 +1,62 @@
+<div data-ng-controller="bookCtrl">
+	<form  class="form-inline"  role="form" name="addBookForm" data-ng-model="addBookForm">
+		 <div class="form-group">
+		 
+			 <label class="aria-describedby">Adding  Book</label><br>
+		 <table>
+		 <tr>
+		 <td> 
+			<input required class="form-control input-md" data-ng-maxlength="45" type="text"
+			 placeholder="Enter Title" data-ng-model="title" name="title"/><br/><br/> 
+		</td>
+		<td>  
+			<label class="aria-describedby">Select Author(s)</label><br>
+			<div class="col-md-6 "> 
+			<select multiple="multiple"  class="form-control" data-ng-model="selectedAuthors" 
+			data-ng-options="a.authorName for a in authors" required>  
+			</select>
+			<div data-ng-messages="addBookForm.selectedAuthors.$error" role="alert">
+   			 <div data-ng-message="required">*</div>
+			 </div>
+			  </div> 
+		</td>
+		<td> 
+			<div class="col-xs-2"> 
+			<label class="aria-describedby">Select Publisher</label><br>
+			<select  name="publisherId" class="form-control" data-ng-options="p.name for p in publishers"
+			 data-ng-model="selectedPub" required>  
+			</select><br/>
+			<div data-ng-messages="addBookForm.selectedPub.$error" role="alert">
+   			 <div data-ng-message="required">*</div>
+			  </div> 
+			  </div>
+		</td>
+		<td> 
+			<div class="col-xs-2"> 
+			<label class="aria-describedby">Select Genre(s)</label><br>
+			<select  name="genreId" class="form-control" data-ng-options="g.name for g in genres" 
+			data-ng-model="selectedGenres" required> 					 		 
+			</select><br/>
+			<div data-ng-messages="addBookForm.selectedGenres.$error" role="alert">
+   			 <div data-ng-message="required">*</div>
+			  </div> 
+			  </div> 
+		</td> 
+		</tr>
+		<tr>		 
+		<td><br/><br/>
+		<button id="submit" type="submit" class="btn btn-primary" data-ng-click="addBook()">
+            <i class="glyphicon glyphicon-floppy-disk"></i>Save
+        </button>
+		</td>
+		</tr>
+		</table> 
+		</div>
+	</form>
+		<div data-ng-messages="addBookForm.title.$error" role="alert">
+    <div data-ng-message="required">*</div>
+    <div data-ng-message="maxlength">
+      Your name must be less than 45 characters
+    </div>
+</div>
+</div>

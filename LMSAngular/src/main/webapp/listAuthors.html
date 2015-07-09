@@ -1,0 +1,57 @@
+<div data-ng-controller="authorCtrl"> 
+<nav>
+	<ul class="pagination">
+		<li><a href="pageAuthors?pageNo=1">1</a></li>
+		<li><a href="pageAuthors?pageNo=2">2</a></li>
+	</ul>
+</nav>
+
+<a data-ng-click="showAddAuthor()">Add Author</a>
+<div style="display:none;" id="addAuthorSection"> 
+<form class="form-inline" role="form" data-ng-model="addAuthorForm" name="addAuthorForm" > 
+	<br/>
+  <div class="form-group">
+		<input data-ng-model="authorName" required data-ng-maxlength="45" 
+		 name="authorName" placeholder="Enter Author Name" class="form-control input-md" type="text" required /> 
+		<span style="color:red" data-ng-show="addAuthorForm.authorName.$dirty && addAuthorForm.authorName.$invalid">
+		<span data-ng-show="addAuthorForm.authorName.$error.required">Author Name is required.</span>
+		</span>
+	  
+		</div>
+		<button class="btn btn-info" data-ng-disabled="addAuthorForm.authorName.$dirty && addAuthorForm.authorName.$invalid " 
+	 id="sub" type="submit" class="btn btn-info" data-ng-click="addAuthor()" >
+  <i class="glyphicon glyphicon-floppy-disk"></i>Save
+</button>
+</form>
+</div>  
+<table id="authorTable" class="table table-hover table-bordered">
+	<tr>
+		<th>Author Id</th>
+		<th>Author Name</th>
+		<th>Edit</th>
+		<th>Delete</th>
+	</tr>
+
+	<tr data-ng-repeat="a in authors">
+		<td><input readonly id="authorId{{a.authorId}}" value="{{a.authorId}}"></td>
+		<td><input readonly type="text" value="{{a.authorName}}" id="authorName{{a.authorId}}"  ></td>
+		
+		<td><button  name="edit" id="edit{{a.authorId}}" type="submit"   class="btn btn-success" data-ng-click="authorUpdate(a)"> 
+		<i class="glyphicon glyphicon-info"></i> Edit</button> </td>  
+		<td> 
+		<button  type="submit"   class="btn btn-danger" data-ng-click="deleteAuthor(a)"> 
+		<i class="glyphicon glyphicon-trash"></i> Delete</button> 
+		</td> 
+	</tr>
+</table>  
+  <form action="deleteAuthor" method="post" name="deleteAuthorFrom">
+			<input type="hidden" name="authorId" id="authorId" />
+		</form> 
+		
+<div id="myModal1" class="modal fade">
+	<div class="modal-dialog">
+		<div class="modal-content"></div>
+	</div>
+</div>
+</div>
+<script src= "http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>

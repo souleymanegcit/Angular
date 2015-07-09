@@ -1,0 +1,57 @@
+<div ng-controller="genreCtrl"> 
+<nav>
+	<ul class="pagination">
+		<li><a href="pageAuthors?pageNo=1">1</a></li>
+		<li><a href="pageAuthors?pageNo=2">2</a></li>
+	</ul>
+</nav>
+<a data-ng-click="showAddGenre()">Add Genre</a>
+<div style="display:none;" id="addGenreSection"> 
+<form class="form-inline" role="form" ng-model="addGenreForm" name="addGenreForm" > 
+	<br/>
+  <div class="form-group">
+		<input data-ng-model="name" required ng-maxlength="45" 
+		 name="name" placeholder="Enter Book genre " class="form-control input-md" type="text" required /> 
+		<span style="color:red" ng-show="addGenreForm.name.$dirty && addGenreForm.name.$invalid">
+		<span ng-show="addGenreForm.name.$error.required">Book genre is required.</span>
+		</span>	  
+		</div>
+		<button class="btn btn-info" ng-disabled="addGenreForm.name.$dirty && addGenreForm.name.$invalid " 
+	 id="sub" type="submit" class="btn btn-info" data-ng-click="addGenre()" >
+  <i class="glyphicon glyphicon-floppy-disk"></i>Save
+</button>
+</form>
+</div> 
+ 
+ 
+<table id="genreTable" class="table table-hover table-bordered">
+	<tr>
+		<th>Genre Id</th>
+		<th>Genre</th>
+		<th>Edit</th>
+		<th>Delete</th>
+	</tr>
+
+	<tr ng-repeat="g in genres">
+		<td><input readonly id="genreId{{genreId}}" value="{{g.genreId}}"></td>
+		<td><input readonly type="text" value="{{g.name}}" id="name{{g.genreId}}"  ></td>
+		
+		<td><button  name="edit" id="edit{{g.genreId}}" type="submit"   class="btn btn-success" data-ng-click="genreUpdate(g)"> 
+		<i class="glyphicon glyphicon-info"></i> Edit</button> </td>  
+		<td> 
+		<button  type="submit"   class="btn btn-danger" data-ng-click="deleteGenre(g)"> 
+		<i class="glyphicon glyphicon-trash"></i> Delete</button> 
+		</td> 
+	</tr>
+</table>  
+  <form action="deleteGenre" method="post" name="deleteGenreFrom">
+			<input type="hidden" name="genreId" id="genreId" />
+		</form> 
+		
+<div id="myModal1" class="modal fade">
+	<div class="modal-dialog">
+		<div class="modal-content"></div>
+	</div>
+</div>
+</div>
+<script src= "http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>

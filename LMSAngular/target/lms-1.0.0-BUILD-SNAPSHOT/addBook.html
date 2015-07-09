@@ -1,0 +1,31 @@
+<div data-ng="booCtrl">
+	<form action="addBook" method="post" name="addBookForm" data-ng-modele="addBookForm">
+		 <div class="form-group">
+		<section>
+			<input type="text" placeholder="Enter Title" name="title"/><br/><br/>
+		</section>
+		<section>
+			<div class="col-xs-2"> 
+			<select multiple name="authorId" class="form-control" data-ng-modele="selectedAuthors" data-ng-repeat="a in authors" required> 
+					<option value="{{a.authorId}}">{{a.authorName}}</option>				 
+			</select><br/>
+			  </div>
+		</section> 
+		<section>
+			<div class="col-xs-2"> 
+			<select  name="publisherId" class="form-control" data-ng-repeat="p in publishers" required> 
+					<option value="{{p.publisherId}}">{{p.publisherName}}</option>				 
+			</select><br/>
+			  </div>
+		</section> 
+		<section>
+			<div class="col-xs-2"> 
+			<select  name="genreId" class="form-control" data-ng-repeat="g in genres" required> 
+					<option value="{{g.genreId}}">{{g.name}}</option>				 
+			</select><br/>
+			  </div>
+		</section> 
+		</div>
+		<input type="submit"/>
+	</form>
+</div>

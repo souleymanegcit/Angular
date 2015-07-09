@@ -1,0 +1,76 @@
+<div ng-controller="pubCtrl"> 
+<nav>
+	<ul class="pagination">
+		<li><a href="pageAuthors?pageNo=1">1</a></li>
+		<li><a href="pageAuthors?pageNo=2">2</a></li>
+	</ul>
+</nav>
+
+<a data-ng-click="showAddPublisher()">Add Publisher</a>
+<div style="display:none;" id="addPublisherSection"> 
+<form class="form-inline" role="form" ng-model="addPublisherForm" name="addPublisherForm" > 
+	<br/>
+  <div class="form-group">
+		<input data-ng-model="publisherName" required ng-maxlength="45" 
+		 name="authorName" placeholder="Enter Author Name" class="form-control input-md" type="text" required /> 
+		<span style="color:red" ng-show="addAuthorForm.authorName.$dirty && myForm.user.$invalid">
+		<span ng-show="addAuthorForm.authorName.$error.required">Author Name is required.</span>
+		</span>
+	  
+		</div>
+		<button class="btn btn-info" ng-disabled="addAuthorForm.authorName.$dirty && addAuthorForm.authorName.$invalid " 
+	 id="sub" type="submit" class="btn btn-info" data-ng-click="addPublisher()" >
+  <i class="glyphicon glyphicon-floppy-disk"></i>Save
+</button>
+</form>
+</div> 
+ 
+ 
+<table id="publisherTable" class="table table-hover table-bordered">
+	 
+		<thead>
+	<tr>
+		<td>Publisher Id</td>
+		<td>Publisher Name</td>
+		<td>Publisher Address</td>
+		<td>Publisher Phone</td>
+		<td>Edit</td>
+		<td>Delete</td>
+	</tr>
+ </thead> 
+
+	<tr data-ng-repeat="p in publishers">
+		<td><input readonly id="publisher{{p.id}}" value="{{p.id}}"></td>
+		<td><input readonly type="text" value="{{p.name}}" id="publisherName{{p.id}}"  ></td>		
+		<td><input readonly type="text" value="{{p.address}}" id="publisherAddress{{p.id}}"  ></td>
+		<td><input readonly type="text" value="{{p.phoneNumber}}" id="publisherPhone{{p.id}}"  ></td>
+		
+		<td><button  name="edit" id="edit{{p.publishersId}}" type="submit"   class="btn btn-success" data-ng-click="publisherUpdate(p)"> 
+		<i class="glyphicon glyphicon-info"></i> Edit</button> </td>  
+		<td> 
+		<button  type="submit"   class="btn btn-danger" data-ng-click="deletepublisher(p)"> 
+		<i class="glyphicon glyphicon-trash"></i> Delete</button> 
+		</td> 
+	</tr>
+	<tfoot>
+	<tr>
+		<td>Publisher Id</td>
+		<td>Publisher Name</td>
+		<td>Publisher Address</td>
+		<td>Publisher Phone</td>
+		<td>Edit</td>
+		<td>Delete</td>
+	</tr>
+	</tfoot>
+</table>  
+  <form action="deletePublisher" method="post" name="deletepublisherFrom">
+			<input type="hidden" name="publisherId" id="publisherId" />
+		</form> 
+		
+<div id="myModal1" class="modal fade">
+	<div class="modal-dialog">
+		<div class="modal-content"></div>
+	</div>
+</div>
+</div>
+<script src= "http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>

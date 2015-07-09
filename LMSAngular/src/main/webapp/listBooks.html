@@ -1,0 +1,59 @@
+ <div data-ng-controller="bookCtrl">
+ 						    
+ 
+<div style="margin-top:80px;margin-left:10px;">
+<section>
+<table id="mybook" class="table table-hover table-bordered">
+	
+	<thead>
+	<tr> 
+		<td>Book Id</td>
+		<td>Book Tile</td>
+		<td>Publisher </td>
+		<td>Book Authors</td>
+		<td>Genre</td>
+		<td>Edit</td>
+		<td>Delete</td> 
+	</tr>
+  </thead>
+	<tr data-ng-repeat="b in books">
+		<td><input readonly id="bookId{{b.bookId}}" value="{{b.bookId}}"></td>			
+		<td><input readonly type="text" value="{{b.title}}" id="title{{b.bookId}}"></td>
+		 <td>{{b.Publishers.publisherName}}</td> 		
+		<div  data-ng-repeat= "a in b.Authors" >
+			<td >{{a.authorName}}</td>
+		</div>
+		<td><button  name="edit" id="edit{{b.bookId}}" type="submit"  class="btn btn-success" data-ng-click="bookUpdate(b)"> 
+		<i class="glyphicon glyphicon-info"></i> Edit</button> </td>  
+		<td> 
+		<button  type="submit"   class="btn btn-danger" data-ng-click="deleteBook(b)"> 
+		<i class="glyphicon glyphicon-trash"></i> Delete</button>
+		 
+	 </tr> 
+	<tfoot>
+	<tr>
+		<td>Book Id</td>
+		<td>Book Tile</td>
+		<td>Publisher </td>
+		<td>Book Authors</td>
+		<td>Genre</td>
+		<td>Edit</td>
+		<td>Delete</td>
+	</tr>
+	</tfoot>
+</table>
+<section>
+ 
+</section>
+<form action="deleteBook" method="post" name="deleteFrm">
+	<input type="hidden" name="bookId" id="bookId"/>
+</form>
+
+</section>
+</div>
+<!-- ------------------------------------------------Scripting jquery code right here------------------------------------------------------ -->
+<script src="./scripts/jquery.js"></script>
+<script src="./scripts/jquery.dataTables.js"></script>
+<script src="./scripts/jquery.dataTables.css"></script> 
+</div>
+<!-- ------------------------------------------------Scripting code right here------------------------------------------------------ -->
